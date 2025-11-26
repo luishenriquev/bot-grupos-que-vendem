@@ -34,7 +34,7 @@ const CLIENTES = [
   {
     numero: "557499375208@c.us",
     nome: "Vitoria da Silva",
-    dominio: "https://promosdericca.gruposquevendem.com/wp-admin",
+    dominio: "https://promosdericca.gruposquevendem.com/grupo",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
@@ -228,9 +228,7 @@ export function configurarBot(client) {
     }
 
     const menu2 = `
-🤖 GQV IA – Assistente Oficial do Grupos que Vendem
-
-👋🏻 Olá *${cliente}*! Eu sou a GQV IA, sua assistente inteligente do Grupos que Vendem.
+👋🏻 Olá *${cliente.nome}*! Eu sou a GQV IA, sua assistente inteligente do Grupos que Vendem.
 Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar hoje? 🤗
 
 📌 Opções disponíveis:
@@ -751,9 +749,7 @@ Digite sua opção:
     }
 
     const menu = `
-🤖 GQV IA – Assistente Oficial do Grupos que Vendem
-
-👋🏻 Olá *${cliente}*! Eu sou a GQV IA, sua assistente inteligente do Grupos que Vendem.
+👋🏻 Olá *${cliente.nome}*! Eu sou a GQV IA, sua assistente inteligente do Grupos que Vendem.
 Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar hoje? 🤗
 
 📌 Opções disponíveis:
