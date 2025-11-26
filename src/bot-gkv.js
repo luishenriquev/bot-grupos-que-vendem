@@ -873,7 +873,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
 
 🚀 Conte comigo para deixar sua organização mais leve, prática e com resultados cada vez melhores!
 `;
-    // o
+    // od
     // =========================== MENU PRINCIPAL (mensagem padrão) ===========================
 
     if (!ESTADO_CONVERSA[numero] || texto === "oi") {
