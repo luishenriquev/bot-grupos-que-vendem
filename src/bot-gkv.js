@@ -448,7 +448,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
           estado.passo = "trafego";
           client.sendText(
             numero,
-            mensagemPadrao("💰 Quanto você investiu em tráfego hoje? (R$)")
+            mensagemPadrao("💰 Quanto você investiu em tráfego ontem? (R$)")
           );
           return;
         }
@@ -460,7 +460,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             client.sendText(
               numero,
               mensagemPadrao(
-                "❌ Informe apenas números. Tente novamente.\n\n💰 Quanto você investiu em tráfego hoje? (R$)"
+                "❌ Informe apenas números. Tente novamente.\n\n💰 Quanto você investiu em tráfego ontem? (R$)"
               )
             );
             return;
@@ -485,8 +485,12 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
           const dadosCliques = await pegarCliques(cliente);
 
           if (dadosCliques.erro || dadosCliques.success === false) {
-            estado.passo === "confirmar_cliques";
-            texto = "atualizar";
+            // Pergunta manualmente o valor
+            estado.passo = "cliques_manual";
+            client.sendText(
+              numero,
+              mensagemPadrao("🖱️ Quantos cliques você teve ontem?")
+            );
             return;
           }
 
@@ -512,7 +516,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             estado.passo = "comissao";
             client.sendText(
               numero,
-              mensagemPadrao("💸 Qual foi o lucro de comissão hoje? (R$)")
+              mensagemPadrao("💸 Qual foi o lucro de comissão ontem? (R$)")
             );
             return;
           }
@@ -564,7 +568,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             client.sendText(
               numero,
               mensagemPadrao(
-                "❌ Informe apenas números. Tente novamente.\n\n💸 Qual foi o lucro de comissão hoje? (R$)"
+                "❌ Informe apenas números. Tente novamente.\n\n💸 Qual foi o lucro de comissão ontem? (R$)"
               )
             );
             return;
