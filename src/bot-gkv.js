@@ -112,7 +112,7 @@ const CLIENTES = [
   {
     numero: "5511965571056@c.us",
     nome: "Fellipe Rodrigues",
-    dominio: "https://reginaindica.site/grupo",
+    dominio: "https://reginaindica.site",
     api_key: "SUA_API_KEY_AQUI",
   },
 ];
