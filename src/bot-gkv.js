@@ -122,7 +122,7 @@ function numeroValido(valor) {
 }
 
 function mensagemPadrao(texto) {
-  return texto + "\n❌ *Para encerrar basta enviar: SAIR*";
+  return texto + "\n\n❌ *Para encerrar basta enviar: SAIR*";
 }
 
 function validarLinkWhatsApp(link) {
@@ -568,6 +568,9 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             resultadoTexto += `🖱️ CPC: R$ ${f(cpc)}\n`;
             resultadoTexto += `📊 EPC Diário: R$ ${f(epcDia)}\n`;
             resultadoTexto += `📆 EPC Mensal (estimado): R$ ${f(epcMes)}\n\n`;
+            resultadoTexto += `📈 Projeção Mensal de Faturamento: R$ ${f(
+              epcMes * 30
+            )}\n\n`;
             resultadoTexto += `📈 A GQV IA identificou um desempenho excelente!\nVocê está no ritmo certo — continue aplicando sua estratégia, porque seus resultados estão escalando de forma consistente!\n\n`;
             resultadoTexto += `Se precisar de mim para qualquer ajuste ou análise, é só me chamar. 🤖`;
           } else if (desempenhoTipo === "intermediaria") {
@@ -581,6 +584,9 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             resultadoTexto += `🖱️ CPC: R$ ${f(cpc)}\n`;
             resultadoTexto += `📊 EPC Diário: R$ ${f(epcDia)}\n`;
             resultadoTexto += `📆 EPC Mensal (estimado): R$ ${f(epcMes)}\n\n`;
+            resultadoTexto += `📈 Projeção Mensal de Faturamento: R$ ${f(
+              epcMes * 30
+            )}\n\n`;
             resultadoTexto += `✨ A GQV IA identificou evolução contínua.\nVocê está construindo uma boa base — pequenos ajustes agora podem te levar para um nível ainda maior de performance!\n\n`;
             resultadoTexto += `Se precisar de mim para qualquer ajuste ou análise, é só me chamar. 🤖`;
           } else {
@@ -594,6 +600,9 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             resultadoTexto += `🖱️ CPC: R$ ${f(cpc)}\n`;
             resultadoTexto += `📊 EPC Diário: R$ ${f(epcDia)}\n`;
             resultadoTexto += `📆 EPC Mensal (estimado): R$ ${f(epcMes)}\n\n`;
+            resultadoTexto += `📈 Projeção Mensal de Faturamento: R$ ${f(
+              epcMes * 30
+            )}\n\n`;
             resultadoTexto += `⚠️ A GQV IA identificou pontos de atenção.\nIsso não é um problema — é uma direção! Ajustes estratégicos podem elevar esses números rapidamente. Continue firme, você está evoluindo!\n\n`;
             resultadoTexto += `Se precisar de mim para qualquer ajuste ou análise, é só me chamar. 🤖`;
           }
