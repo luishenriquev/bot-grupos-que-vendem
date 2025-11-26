@@ -115,6 +115,60 @@ const CLIENTES = [
     dominio: "https://reginaindica.site",
     api_key: "SUA_API_KEY_AQUI",
   },
+  {
+    numero: "5531985579617@c.us",
+    nome: "Raquel Resende Corrêa Duarte",
+    dominio: "https://raquelindica.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "55999340864@c.us",
+    nome: "Daiane Teixeira",
+    dominio: "https://ofertasdaday.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "5549988408704@c.us",
+    nome: "Camila Ascari",
+    dominio: "https://economiainteligente.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "5528998839535@c.us",
+    nome: "Tarciara Faccini Entringer",
+    dominio: "https://achadosdatah.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "5597991511942@c.us",
+    nome: "Ramile Henrique Marques",
+    dominio: "https://ofertasdamih.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "5585997335977@c.us",
+    nome: "Josilene de Sousa Azevedo",
+    dominio: "https://indicajosilene.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "5548998398913@c.us",
+    nome: "Edilaine Mauricio Cândido da Rosa",
+    dominio: "https://universoachadinhosdalara.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "5581991364205@c.us",
+    nome: "Micheline de Souza Pereira da Silva",
+    dominio: "https://promosdami.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "5571984699541@c.us",
+    nome: "Daniela dos Santos Nunes",
+    dominio: "https://dicasdadani.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
 ];
 
 function numeroValido(valor) {
