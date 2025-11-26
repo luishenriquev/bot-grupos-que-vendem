@@ -124,25 +124,27 @@ function numeroValido(valor) {
 function extrairNumeroInteligente(texto) {
   if (typeof texto !== "string") return null;
 
-  // Remove espaços, "R$" e transforma vírgula em ponto
-  let textoLimpo = texto
-    .replace(/\s/g, "")
-    .replace(/^R\$/i, "")
-    .replace(",", ".");
+  // Remove espaços no início/fim
+  texto = texto.trim();
 
-  // Verifica se só tem números e ponto (decimais permitidos)
-  if (!/^\d+(\.\d+)?$/.test(textoLimpo)) {
-    return null; // inválido
-  }
+  // Regex: opcional R$ ou r$, depois números, opcional decimal com ponto ou vírgula
+  const match = texto.match(/^R?\$\s*(\d+([.,]\d+)?)$|^(\d+([.,]\d+)?)$/i);
 
-  const valor = Number(textoLimpo);
+  if (!match) return null;
 
-  // Verifica se é número finito e positivo
+  // Extrai o número
+  let valorStr = match[1] || match[3];
+
+  // Substitui vírgula por ponto
+  valorStr = valorStr.replace(",", ".");
+
+  const valor = Number(valorStr);
+
   if (!isNaN(valor) && isFinite(valor) && valor >= 0) {
     return valor;
   }
 
-  return null; // inválido
+  return null;
 }
 
 function mensagemPadrao(texto) {
@@ -890,7 +892,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
 📊 *ANÁLISE DE MÉTRICAS*
 
 ℹ️ A análise será realizada sempre com base no dia anterior.
-Isso garante acompanhamento preciso, organizado e actualizado para você. 📊
+Isso garante acompanhamento preciso, organizado e atualizado para você. 📊
 
 Vamos começar!
 
