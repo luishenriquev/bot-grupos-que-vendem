@@ -862,7 +862,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
 
 📌 Opções disponíveis:
 
-1️⃣ Criar grupo
+1️⃣ Adicionar grupo
 2️⃣ Ativar grupo
 3️⃣ Pausar grupo
 4️⃣ Excluir grupo
