@@ -217,7 +217,13 @@ const ESTADO_CONVERSA = {};
 // { etapa, acao, grupos, passo, nome, link, dados }
 
 function identificarCliente(numero) {
+  console.log("xxxxxxxx aqui3", numero);
   const cleanNumero = numero.replace(/\s+/g, "").toLowerCase();
+  console.log("xxxxxxxx aqui4", cleanNumero);
+  const t = CLIENTES.find(
+    (c) => c.numero.replace(/\s+/g, "").toLowerCase() === cleanNumero
+  );
+  console.log("xxxxxxxx aqui5", t);
   return CLIENTES.find(
     (c) => c.numero.replace(/\s+/g, "").toLowerCase() === cleanNumero
   );
@@ -290,7 +296,8 @@ export function configurarBot(client) {
     const textoRaw = msg.body ? msg.body.trim() : "";
     const texto = textoRaw.toLowerCase();
     const cliente = identificarCliente(numero);
-
+    console.log("xxxxxxxx aqui1", numero);
+    console.log("xxxxxxxx aqui2", cliente);
     if (!cliente) {
       client.sendText(numero, mensagemPadrao("❌ Você não está autorizado."));
       return;
