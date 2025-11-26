@@ -116,7 +116,7 @@ const CLIENTES = [
     api_key: "SUA_API_KEY_AQUI",
   },
   {
-    numero: "5531985579617@c.us",
+    numero: "553185579617@c.us",
     nome: "Raquel Resende Corrêa Duarte",
     dominio: "https://raquelindica.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
@@ -158,7 +158,7 @@ const CLIENTES = [
     api_key: "SUA_API_KEY_AQUI",
   },
   {
-    numero: "5581991364205@c.us",
+    numero: "558191364205@c.us",
     nome: "Micheline de Souza Pereira da Silva",
     dominio: "https://promosdami.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
