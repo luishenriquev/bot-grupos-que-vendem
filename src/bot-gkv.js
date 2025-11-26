@@ -121,6 +121,30 @@ function numeroValido(valor) {
   return !isNaN(valor) && isFinite(valor);
 }
 
+function extrairNumeroInteligente(texto) {
+  if (typeof texto !== "string") return null;
+
+  // Remove espaços, "R$" e transforma vírgula em ponto
+  let textoLimpo = texto
+    .replace(/\s/g, "")
+    .replace(/^R\$/i, "")
+    .replace(",", ".");
+
+  // Verifica se só tem números e ponto (decimais permitidos)
+  if (!/^\d+(\.\d+)?$/.test(textoLimpo)) {
+    return null; // inválido
+  }
+
+  const valor = Number(textoLimpo);
+
+  // Verifica se é número finito e positivo
+  if (!isNaN(valor) && isFinite(valor) && valor >= 0) {
+    return valor;
+  }
+
+  return null; // inválido
+}
+
 function mensagemPadrao(texto) {
   return texto + "\n\n❌ *Para encerrar basta enviar: SAIR*";
 }
@@ -429,8 +453,8 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
 
         // PASSO 2 – TRÁFEGO
         if (estado.passo === "trafego") {
-          const valor = Number(textoRaw.replace(",", "."));
-          if (!numeroValido(valor)) {
+          const valor = extrairNumeroInteligente(textoRaw);
+          if (valor === null) {
             client.sendText(
               numero,
               mensagemPadrao(
@@ -439,6 +463,16 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             );
             return;
           }
+          //   const valor = Number(textoRaw.replace(",", "."));
+          //   if (!numeroValido(valor)) {
+          //     client.sendText(
+          //       numero,
+          //       mensagemPadrao(
+          //         "❌ Informe apenas números. Tente novamente.\n\n💰 Quanto você investiu em tráfego hoje? (R$)"
+          //       )
+          //     );
+          //     return;
+          //   }
 
           estado.dados.trafego = valor;
           estado.passo = "dia_cliques";
@@ -449,13 +483,8 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
           const dadosCliques = await pegarCliques(cliente);
 
           if (dadosCliques.erro || dadosCliques.success === false) {
-            client.sendText(
-              numero,
-              mensagemPadrao(
-                "⚠️ Não consegui buscar os cliques do dia anterior."
-              )
-            );
-            delete ESTADO_CONVERSA[numero];
+            estado.passo === "confirmar_cliques";
+            texto = "atualizar";
             return;
           }
 
@@ -528,8 +557,8 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
 
         // PASSO 4 – COMISSÃO (FINALIZA)
         if (estado.passo === "comissao") {
-          const valor = Number(textoRaw.replace(",", "."));
-          if (!numeroValido(valor)) {
+          const valor = extrairNumeroInteligente(textoRaw);
+          if (valor === null) {
             client.sendText(
               numero,
               mensagemPadrao(
@@ -538,6 +567,16 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             );
             return;
           }
+          //   const valor = Number(textoRaw.replace(",", "."));
+          //   if (!numeroValido(valor)) {
+          //     client.sendText(
+          //       numero,
+          //       mensagemPadrao(
+          //         "❌ Informe apenas números. Tente novamente.\n\n💸 Qual foi o lucro de comissão hoje? (R$)"
+          //       )
+          //     );
+          //     return;
+          //   }
 
           estado.dados.comissao = valor;
           const d = estado.dados;
