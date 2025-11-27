@@ -140,7 +140,7 @@ const CLIENTES = [
     api_key: "SUA_API_KEY_AQUI",
   },
   {
-    numero: "5597991511942@c.us",
+    numero: "559791511942@c.us",
     nome: "Ramile Henrique Marques",
     dominio: "https://ofertasdamih.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
