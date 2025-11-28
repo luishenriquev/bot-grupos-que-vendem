@@ -122,13 +122,13 @@ const CLIENTES = [
     api_key: "SUA_API_KEY_AQUI",
   },
   {
-    numero: "55999340864@c.us",
+    numero: "555599340864@c.us",
     nome: "Daiane Teixeira",
     dominio: "https://ofertasdaday.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
-    numero: "5549988408704@c.us",
+    numero: "554988408704@c.us",
     nome: "Camila Ascari",
     dominio: "https://economiainteligente.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
