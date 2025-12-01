@@ -169,6 +169,12 @@ const CLIENTES = [
     dominio: "https://dicasdadani.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
+  {
+    numero: "556284647145@c.us",
+    nome: "Amanda Oliveira",
+    dominio: "https://promosnoiva.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
 ];
 
 function numeroValido(valor) {
