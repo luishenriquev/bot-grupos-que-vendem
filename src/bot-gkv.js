@@ -397,7 +397,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
     `
         );
 
-        delete ESTADO_CONVERSA[numero];
+        // delete ESTADO_CONVERSA[numero];
 
         return;
       }
