@@ -113,6 +113,7 @@ const CLIENTES = [
     numero: "5511965571056@c.us",
     nome: "Fellipe Rodrigues",
     dominio: "https://reginaindica.site",
+    dominio2: "https://promosnoiva.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
@@ -173,6 +174,25 @@ const CLIENTES = [
     numero: "556284647145@c.us",
     nome: "Amanda Oliveira",
     dominio: "https://promosnoiva.gruposquevendem.com",
+    dominio2: "https://amandapromos.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "556192084682@c.us",
+    nome: "Larissa Alves Xavier Lopes",
+    dominio: "https://maequeindica.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "554796202381@c.us",
+    nome: "Sara Silva",
+    dominio: "https://tudopelaliv.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "551988789089@c.us",
+    nome: "Natália Sanches Marcondes",
+    dominio: "https://eunatyindico.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
 ];
@@ -222,6 +242,8 @@ function validarLinkWhatsApp(link) {
 const ESTADO_CONVERSA = {};
 // { etapa, acao, grupos, passo, nome, link, dados }
 
+const DOMINIO_ESCOLHIDO = {};
+
 function identificarCliente(numero) {
   console.log("xxxxxxxx aqui3", numero);
   const cleanNumero = numero.replace(/\s+/g, "").toLowerCase();
@@ -237,8 +259,9 @@ function identificarCliente(numero) {
 
 // LISTAR GRUPOS
 async function listarGrupos(cliente) {
+  const dominioFinal = DOMINIO_ESCOLHIDO[cliente.numero] || cliente.dominio;
   try {
-    const res = await axios.post(`${cliente.dominio}/wp-json/gkv/v1/list`, {
+    const res = await axios.post(`${dominioFinal}/wp-json/gkv/v1/list`, {
       api_key: cliente.api_key,
     });
     return res.data.grupos || {};
@@ -250,8 +273,9 @@ async function listarGrupos(cliente) {
 
 // ATUALIZAR GRUPO (PAUSAR, ATIVAR, EXCLUIR)
 async function atualizarGrupo(cliente, idGrupo, status) {
+  const dominioFinal = DOMINIO_ESCOLHIDO[cliente.numero] || cliente.dominio;
   try {
-    const res = await axios.post(`${cliente.dominio}/wp-json/gkv/v1/update`, {
+    const res = await axios.post(`${dominioFinal}/wp-json/gkv/v1/update`, {
       api_key: cliente.api_key,
       id: idGrupo,
       status,
@@ -265,8 +289,9 @@ async function atualizarGrupo(cliente, idGrupo, status) {
 
 // CRIAR GRUPO
 async function criarGrupo(cliente, nome, link) {
+  const dominioFinal = DOMINIO_ESCOLHIDO[cliente.numero] || cliente.dominio;
   try {
-    const res = await axios.post(`${cliente.dominio}/wp-json/gkv/v1/create`, {
+    const res = await axios.post(`${dominioFinal}/wp-json/gkv/v1/create`, {
       api_key: cliente.api_key,
       name: nome,
       link,
@@ -279,8 +304,9 @@ async function criarGrupo(cliente, nome, link) {
 }
 
 async function pegarCliques(cliente) {
+  const dominioFinal = DOMINIO_ESCOLHIDO[cliente.numero] || cliente.dominio;
   try {
-    const res = await axios.post(`${cliente.dominio}/wp-json/gkv/v1/cliques`, {
+    const res = await axios.post(`${dominioFinal}/wp-json/gkv/v1/cliques`, {
       api_key: cliente.api_key,
     });
     return res.data;
@@ -311,6 +337,7 @@ export function configurarBot(client) {
 
     if (texto.toLowerCase() === "sair") {
       delete ESTADO_CONVERSA[numero];
+      delete DOMINIO_ESCOLHIDO[numero];
 
       client.sendText(
         numero,
@@ -321,7 +348,7 @@ export function configurarBot(client) {
     }
 
     const menu2 = `
-👋🏻 Olá *${cliente.nome}*! Eu sou a GQV IA, sua assistente inteligente do Grupos que Vendem.
+👋🏻 Olá *${cliente.nome}*! Eu sou a FlowAi, sua assistente inteligente do Grupos que Vendem.
 Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar hoje? 🤗
 
 📌 Opções disponíveis:
@@ -341,6 +368,39 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
     // =========================== FLUXOS EM ANDAMENTO ===========================
     if (ESTADO_CONVERSA[numero]) {
       const estado = ESTADO_CONVERSA[numero];
+
+      if (estado.etapa === "escolher_dominio") {
+        if (texto !== "1" && texto !== "2") {
+          client.sendText(numero, "❌ Escolha inválida. Digite 1 ou 2.");
+          return;
+        }
+
+        DOMINIO_ESCOLHIDO[numero] =
+          texto === "1" ? cliente.dominio : cliente.dominio2;
+
+        client.sendText(
+          numero,
+          `✅ Domínio selecionado com sucesso!
+
+📌 Opções disponíveis:
+
+1️⃣ Adicionar grupo
+2️⃣ Ativar grupo
+3️⃣ Pausar grupo
+4️⃣ Excluir grupo
+5️⃣ Ver status dos grupos
+6️⃣ Análise de Métricas de Performance
+7️⃣ Priorizar grupos
+8️⃣ Tráfego Pago
+
+🚀 Conte comigo para deixar sua organização mais leve, prática e com resultados cada vez melhores!
+    `
+        );
+
+        delete ESTADO_CONVERSA[numero];
+
+        return;
+      }
 
       // =========================================
       // VALIDAÇÃO DO MENU PRINCIPAL (1 a 8)
@@ -387,17 +447,17 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
         let retorno = "";
 
         if (estado.acao === "pausar")
-          retorno = `⛔ O Grupo ${nome} foi pausado com sucesso!\n\nA GQV IA já atualizou o status. Se precisar reativar ou ajustar algo, é só me chamar. 🤖`;
+          retorno = `⛔ O Grupo ${nome} foi pausado com sucesso!\n\nA FlowAI já atualizou o status. Se precisar reativar ou ajustar algo, é só me chamar. 🤖`;
         if (estado.acao === "ativar")
-          retorno = `🟢 O Grupo ${nome} foi reativado com sucesso!\n\nA GQV IA já atualizou o status. Se precisar pausar ou ajustar algo, é só me chamar. 🤖`;
+          retorno = `🟢 O Grupo ${nome} foi reativado com sucesso!\n\nA FlowAI já atualizou o status. Se precisar pausar ou ajustar algo, é só me chamar. 🤖`;
         if (estado.acao === "excluir")
-          retorno = `🗑️ O Grupo ${nome} foi excluído com sucesso!\n\nA GQV IA já atualizou o status. Se precisar de algo, estou por aqui. 🤖`;
-
+          retorno = `🗑️ O Grupo ${nome} foi excluído com sucesso!\n\nA FlowAI já atualizou o status. Se precisar de algo, estou por aqui. 🤖`;
         client.sendText(
           numero,
           resp.success ? retorno : `❌ Erro: ${resp.error}`
         );
         delete ESTADO_CONVERSA[numero];
+        delete DOMINIO_ESCOLHIDO[numero];
         return;
       }
 
@@ -417,6 +477,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             mensagemPadrao("Tudo bem! Se precisar, é só chamar. 😊")
           );
           delete ESTADO_CONVERSA[numero];
+          delete DOMINIO_ESCOLHIDO[numero];
           return;
         }
 
@@ -484,13 +545,14 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             if (res.success) {
               client.sendText(
                 numero,
-                `✅ O Grupo ${estado.nome} foi criado com sucesso e já está ativo! A GQV IA finalizou a criação. 🤖`
+                `✅ O Grupo ${estado.nome} foi criado com sucesso e já está ativo! A FlowAI finalizou a criação. 🤖`
               );
             } else {
               client.sendText(numero, `❌ Erro: ${res.error}`);
             }
 
             delete ESTADO_CONVERSA[numero];
+            delete DOMINIO_ESCOLHIDO[numero];
             return;
           }
         }
@@ -715,12 +777,13 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             resultadoTexto += `📈 Projeção Mensal de Faturamento: R$ ${f(
               epcMes * d.membros
             )}\n\n`;
-            resultadoTexto += `⚠️ A GQV IA identificou pontos de atenção.\nIsso não é um problema — é uma direção! Ajustes estratégicos podem elevar esses números rapidamente. Continue firme, você está evoluindo!\n\n`;
+            resultadoTexto += `⚠️ A FlowAI identificou pontos de atenção.\nIsso não é um problema — é uma direção! Ajustes estratégicos podem elevar esses números rapidamente. Continue firme, você está evoluindo!\n\n`;
             resultadoTexto += `Se precisar de mim para qualquer ajuste ou análise, é só me chamar. 🤖`;
           }
 
           client.sendText(numero, `${commonHeader}\n${resultadoTexto}`);
           delete ESTADO_CONVERSA[numero];
+          delete DOMINIO_ESCOLHIDO[numero];
           return;
         }
       }
@@ -772,6 +835,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
         );
 
         delete ESTADO_CONVERSA[numero];
+        delete DOMINIO_ESCOLHIDO[numero];
         return;
       }
 
@@ -792,6 +856,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
           );
 
           delete ESTADO_CONVERSA[numero];
+          delete DOMINIO_ESCOLHIDO[numero];
           return;
         }
 
@@ -839,6 +904,7 @@ Digite sua opção:
           );
 
           delete ESTADO_CONVERSA[numero];
+          delete DOMINIO_ESCOLHIDO[numero];
           return;
         }
 
@@ -870,7 +936,7 @@ Digite sua opção:
     }
 
     const menu = `
-👋🏻 Olá *${cliente.nome}*! Eu sou a GQV IA, sua assistente inteligente do Grupos que Vendem.
+👋🏻 Olá *${cliente.nome}*! Eu sou a FlowAi, sua assistente inteligente do Grupos que Vendem.
 Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar hoje? 🤗
 
 📌 Opções disponíveis:
@@ -886,9 +952,29 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
 
 🚀 Conte comigo para deixar sua organização mais leve, prática e com resultados cada vez melhores!
 `;
-    // od
-    // =========================== MENU PRINCIPAL (mensagem padrão) ===========================
 
+    // ==========================
+    //  Se o cliente tem 2 domínios
+    // ==========================
+    if (!ESTADO_CONVERSA[numero] && cliente.dominio && cliente.dominio2) {
+      ESTADO_CONVERSA[numero] = { etapa: "escolher_dominio" };
+
+      client.sendText(
+        numero,
+        `
+        👋🏻 Olá *${cliente.nome}*! Eu sou a FlowAi, sua assistente inteligente do Grupos que Vendem.
+
+        🌐 Seu acesso possui mais de um domínio.\n\n
+          "Escolha qual deseja usar agora:\n\n
+          1️⃣ ${cliente.dominio}\n
+          2️⃣ ${cliente.dominio2}\n\n
+          "Digite 1 ou 2:`
+      );
+
+      return;
+    }
+
+    // =========================== MENU PRINCIPAL (mensagem padrão) ===========================
     if (!ESTADO_CONVERSA[numero] || texto === "oi") {
       ESTADO_CONVERSA[numero] = { etapa: "menu_principal" };
       // =========================== MENU SOMENTE QUANDO O USUÁRIO CHAMA ===========================
