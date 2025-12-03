@@ -734,7 +734,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
           else desempenhoTipo = "alta";
 
           // Monta relatórios conforme solicitado (com os textos que você passou)
-          const commonHeader = `🤖✨ GQV IA – Análise de Métricas Concluída\n`;
+          const commonHeader = `🤖✨ A FlowAI – Análise de Métricas Concluída\n`;
 
           let resultadoTexto = "";
           if (desempenhoTipo === "alta") {
@@ -751,7 +751,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             resultadoTexto += `📈 Projeção Mensal de Faturamento: R$ ${f(
               epcMes * d.membros
             )}\n\n`;
-            resultadoTexto += `🚀 A GQV IA identificou um desempenho excelente!\nVocê está no ritmo certo — continue aplicando sua estratégia, porque seus resultados estão escalando de forma consistente!\n\n`;
+            resultadoTexto += `🚀 A FlowAI identificou um desempenho excelente!\nVocê está no ritmo certo — continue aplicando sua estratégia, porque seus resultados estão escalando de forma consistente!\n\n`;
             resultadoTexto += `Se precisar de mim para qualquer ajuste ou análise, é só me chamar. 🤖`;
           } else if (desempenhoTipo === "intermediaria") {
             resultadoTexto += `📊 Resultado: PERFORMANCE INTERMEDIÁRIA 🟡📈\n\n`;
@@ -767,7 +767,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
             resultadoTexto += `📈 Projeção Mensal de Faturamento: R$ ${f(
               epcMes * d.membros
             )}\n\n`;
-            resultadoTexto += `✨ A GQV IA identificou evolução contínua.\nVocê está construindo uma boa base — pequenos ajustes agora podem te levar para um nível ainda maior de performance!\n\n`;
+            resultadoTexto += `✨ A FlowAI identificou evolução contínua.\nVocê está construindo uma boa base — pequenos ajustes agora podem te levar para um nível ainda maior de performance!\n\n`;
             resultadoTexto += `Se precisar de mim para qualquer ajuste ou análise, é só me chamar. 🤖`;
           } else {
             resultadoTexto += `📊 Resultado: BAIXA PERFORMANCE 🔴⚠️\n\n`;
@@ -1062,6 +1062,8 @@ Digite *${opcoes}*:`
           "\nSe precisar de mim para qualquer ajuste ou análise, é só me chamar. 🤖";
 
         client.sendText(numero, txt);
+        delete ESTADO_CONVERSA[numero];
+        delete DOMINIO_ESCOLHIDO[numero];
         return;
       }
 
