@@ -10,9 +10,7 @@ const CLIENTES = [
   {
     numero: "554791629619@c.us",
     nome: "Luis",
-    dominio: "https://reginaindica.site",
-    // dominio2: "https://promosnoiva.gruposquevendem.com",
-    // dominio3: "https://teste.gruposquevendem.com",
+    dominio: "https://teste.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
@@ -115,7 +113,7 @@ const CLIENTES = [
     numero: "5511965571056@c.us",
     nome: "Fellipe Rodrigues",
     dominio: "https://reginaindica.site",
-    dominio2: "https://promosnoiva.gruposquevendem.com",
+    // dominio2: "https://promosnoiva.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
@@ -175,8 +173,8 @@ const CLIENTES = [
   {
     numero: "556284647145@c.us",
     nome: "Amanda Oliveira",
-    dominio: "https://promosnoiva.gruposquevendem.com",
-    dominio2: "https://amandapromos.gruposquevendem.com",
+    dominio: "https://amandapromos.gruposquevendem.com",
+    dominio2: "https://promosnoiva.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
