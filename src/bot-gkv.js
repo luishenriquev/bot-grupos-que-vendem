@@ -11,7 +11,8 @@ const CLIENTES = [
     numero: "554791629619@c.us",
     nome: "Luis",
     dominio: "https://reginaindica.site",
-    // dominio2: "https://promosnoiva.gruposquevendem.com",
+    dominio2: "https://promosnoiva.gruposquevendem.com",
+    dominio3: "https://teste.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
@@ -371,13 +372,17 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
       const estado = ESTADO_CONVERSA[numero];
 
       if (estado.etapa === "escolher_dominio") {
-        if (texto !== "1" && texto !== "2") {
-          client.sendText(numero, "❌ Escolha inválida. Digite 1 ou 2.");
+        if (texto !== "1" && texto !== "2" && texto !== "3") {
+          client.sendText(numero, "❌ Escolha inválida. Digite 1, 2 ou 3.");
           return;
         }
 
         DOMINIO_ESCOLHIDO[numero] =
-          texto === "1" ? cliente.dominio : cliente.dominio2;
+          texto === "1"
+            ? cliente.dominio
+            : texto === "2"
+            ? cliente.dominio2
+            : cliente.dominio3;
 
         client.sendText(
           numero,
@@ -957,21 +962,41 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
     // ==========================
     //  Se o cliente tem 2 domínios
     // ==========================
-    if (!ESTADO_CONVERSA[numero] && cliente.dominio && cliente.dominio2) {
+    if (
+      !ESTADO_CONVERSA[numero] &&
+      cliente.dominio &&
+      (cliente.dominio2 || cliente.dominio3)
+    ) {
       ESTADO_CONVERSA[numero] = { etapa: "escolher_dominio" };
+
+      // Monta lista de domínios dinamicamente
+      const dominios = [
+        cliente.dominio,
+        cliente.dominio2,
+        cliente.dominio3,
+      ].filter(Boolean); // remove undefined
+
+      // Quebra link
+      const quebrarLink = (url) => url.replace("://", ":\u2060//");
+
+      // Monta texto numerado
+      let listaTexto = "";
+      dominios.forEach((dom, i) => {
+        listaTexto += `${i + 1}️⃣ ${quebrarLink(dom)}\n`;
+      });
+
+      // Monta texto final com número correto
+      const opcoes = dominios.length === 2 ? "1 ou 2" : "1, 2 ou 3";
 
       client.sendText(
         numero,
         `
-👋🏻 Olá *${
-          cliente.nome
-        }*! Eu sou a FlowAi, sua assistente inteligente do Grupos que Vendem.
+👋🏻 Olá *${cliente.nome}*! Eu sou a FlowAi, sua assistente inteligente do Grupos que Vendem.
 
 🌐 Seu acesso possui mais de um domínio.\n
-"Escolha qual deseja usar agora:\n
-1️⃣ ${cliente.dominio.replace("://", ":\u2060//")}\n
-2️⃣ ${cliente.dominio2.replace("://", ":\u2060//")}\n
-"Digite 1 ou 2:`
+Escolha qual deseja usar agora:\n
+${listaTexto}
+Digite *${opcoes}*:`
       );
 
       return;
