@@ -12,7 +12,7 @@ const CLIENTES = [
     nome: "Luis",
     dominio: "https://reginaindica.site",
     dominio2: "https://promosnoiva.gruposquevendem.com",
-    dominio3: "https://teste.gruposquevendem.com",
+    // dominio3: "https://teste.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
