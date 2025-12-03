@@ -962,13 +962,15 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
       client.sendText(
         numero,
         `
-        👋🏻 Olá *${cliente.nome}*! Eu sou a FlowAi, sua assistente inteligente do Grupos que Vendem.
+👋🏻 Olá *${
+          cliente.nome
+        }*! Eu sou a FlowAi, sua assistente inteligente do Grupos que Vendem.
 
-        🌐 Seu acesso possui mais de um domínio.\n\n
-          "Escolha qual deseja usar agora:\n\n
-          1️⃣ ${cliente.dominio}\n
-          2️⃣ ${cliente.dominio2}\n\n
-          "Digite 1 ou 2:`
+🌐 Seu acesso possui mais de um domínio.\n
+"Escolha qual deseja usar agora:\n
+1️⃣ ${cliente.dominio.replace("://", ":\u2060//")}\n
+2️⃣ ${cliente.dominio2.replace("://", ":\u2060//")}\n
+"Digite 1 ou 2:`
       );
 
       return;
