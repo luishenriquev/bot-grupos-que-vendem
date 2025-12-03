@@ -189,6 +189,12 @@ const CLIENTES = [
     dominio: "https://eunatyindico.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
+  {
+    numero: "558796459064@c.us",
+    nome: "Melissa Gabrielle Nunes De Sousas",
+    dominio: "https://clubepromocoes.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
 ];
 
 function numeroValido(valor) {
