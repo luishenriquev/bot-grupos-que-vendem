@@ -50,12 +50,6 @@ const CLIENTES = [
     api_key: "SUA_API_KEY_AQUI",
   },
   {
-    numero: "556284647145@c.us",
-    nome: "Amanda Oliveira",
-    dominio: "https://amandapromos.gruposquevendem.com",
-    api_key: "SUA_API_KEY_AQUI",
-  },
-  {
     numero: "555199104162@c.us",
     nome: "Marilaine Garcia",
     dominio: "https://maricasaedecor.gruposquevendem.com",
