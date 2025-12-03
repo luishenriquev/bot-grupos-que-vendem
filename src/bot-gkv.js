@@ -10,7 +10,8 @@ const CLIENTES = [
   {
     numero: "554791629619@c.us",
     nome: "Luis",
-    dominio: "http://plugin-grupos.local",
+    dominio: "https://reginaindica.site",
+    dominio2: "https://promosnoiva.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
   {
@@ -397,7 +398,7 @@ Estou aqui para agilizar sua gestão e facilitar seu dia. Como posso te ajudar h
     `
         );
 
-        // delete ESTADO_CONVERSA[numero];
+        delete ESTADO_CONVERSA[numero].etapa;
 
         return;
       }
