@@ -195,6 +195,48 @@ const CLIENTES = [
     dominio: "https://clubepromocoes.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
+  {
+    numero: "551888026905@c.us",
+    nome: "Vanessa De Jesus Basilio",
+    dominio: "https://nessaindicabr.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "553182707718@c.us",
+    nome: "Kettely Do Carmo Liberato",
+    dominio: "https://promosdaket.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "556193621621@c.us",
+    nome: "Jeziel Costa Pereira",
+    dominio: "https://posedericaa.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "557193170218@c.us",
+    nome: "Rosana Oliveira Meireles",
+    dominio: "https://rosagarimpou.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "552799206455@c.us",
+    nome: "Isabelly Vitória Melo De Araújo",
+    dominio: "https://decooremais.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "551147808744@c.us",
+    nome: "Dayane Paiva",
+    dominio: "https://achadinhosdaypaiva.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "551159455305@c.us",
+    nome: "Beatriz Marcilia De Oliveira",
+    dominio: "https://abibiindica.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
 ];
 
 function numeroValido(valor) {
