@@ -237,6 +237,12 @@ const CLIENTES = [
     dominio: "https://abibiindica.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
+  {
+    numero: "551988789089@c.us",
+    nome: "Natália Sanches Marcondes",
+    dominio: "https://eunatyindico.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
 ];
 
 function numeroValido(valor) {
