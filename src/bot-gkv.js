@@ -184,12 +184,6 @@ const CLIENTES = [
     api_key: "SUA_API_KEY_AQUI",
   },
   {
-    numero: "551988789089@c.us",
-    nome: "Natália Sanches Marcondes",
-    dominio: "https://eunatyindico.gruposquevendem.com",
-    api_key: "SUA_API_KEY_AQUI",
-  },
-  {
     numero: "558796459064@c.us",
     nome: "Melissa Gabrielle Nunes De Sousas",
     dominio: "https://clubepromocoes.gruposquevendem.com",
@@ -241,6 +235,18 @@ const CLIENTES = [
     numero: "551988789089@c.us",
     nome: "Natália Sanches Marcondes",
     dominio: "https://eunatyindico.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "556599772769@c.us",
+    nome: "Alecssandra Rialto De Araújo",
+    dominio: "https://promosdaale.gruposquevendem.com",
+    api_key: "SUA_API_KEY_AQUI",
+  },
+  {
+    numero: "556993148230@c.us",
+    nome: "Josivania De Oliveira Siqueira",
+    dominio: "https://promojosy.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
   },
 ];
