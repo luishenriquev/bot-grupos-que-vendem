@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const CLIENTES = [
   {
-    numero: "554791629619@c.us",
+    numero: "5547991629619@c.us",
     nome: "Luis",
     dominio: "https://teste.gruposquevendem.com",
     api_key: "SUA_API_KEY_AQUI",
@@ -298,17 +298,24 @@ const ESTADO_CONVERSA = {};
 
 const DOMINIO_ESCOLHIDO = {};
 
+function extrairNumeroBase(numero) {
+  const digits = numero.replace(/\s+/g, "").toLowerCase(); // só números
+
+  // Pega os últimos 8 dígitos (celular BR sempre tem 9)
+  return digits.slice(-8);
+}
+
 function identificarCliente(numero) {
-  console.log("xxxxxxxx aqui3", numero);
-  const cleanNumero = numero.replace(/\s+/g, "").toLowerCase();
-  console.log("xxxxxxxx aqui4", cleanNumero);
-  const t = CLIENTES.find(
-    (c) => c.numero.replace(/\s+/g, "").toLowerCase() === cleanNumero
-  );
-  console.log("xxxxxxxx aqui5", t);
-  return CLIENTES.find(
-    (c) => c.numero.replace(/\s+/g, "").toLowerCase() === cleanNumero
-  );
+  const baseRecebida = extrairNumeroBase(numero);
+
+  // return CLIENTES.find(
+  //   (c) => c.numero.replace(/\s+/g, "").toLowerCase() === cleanNumero
+  // );
+
+  return CLIENTES.find((c) => {
+    const baseCliente = extrairNumeroBase(c.numero);
+    return baseCliente === baseRecebida;
+  });
 }
 
 // LISTAR GRUPOS
