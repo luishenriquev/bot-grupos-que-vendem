@@ -21,7 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const CLIENTES = [];
+let CLIENTES = [];
 
 // escuta alterações no Firestore
 onSnapshot(collection(db, "clientes"), (snap) => {
