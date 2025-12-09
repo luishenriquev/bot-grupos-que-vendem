@@ -3,6 +3,9 @@ import axios from "axios";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { initializeApp } from "firebase/app";
+import { getFirestore, onSnapshot, collection } from "firebase/firestore";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
