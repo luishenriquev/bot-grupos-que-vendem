@@ -77,7 +77,8 @@ const ESTADO_CONVERSA = {};
 const DOMINIO_ESCOLHIDO = {};
 
 function extrairNumeroBase(numero) {
-  const digits = numero.replace(/\s+/g, "").toLowerCase(); // só números
+  // const digits = numero.replace(/\s+/g, "").toLowerCase();
+  const digits = numero.replace(/\D/g, "");
 
   // Pega os últimos 8 dígitos (celular BR sempre tem 9)
   return digits.slice(-8);
