@@ -165,6 +165,7 @@ function f(num) {
 export function configurarBot(client) {
   client.onMessage(async (msg) => {
     const numero = msg.from;
+    console.log("xxxxxxxx ", msg);
     const textoRaw = msg.body ? msg.body.trim() : "";
     const texto = textoRaw.toLowerCase();
     const cliente = identificarCliente(numero);
