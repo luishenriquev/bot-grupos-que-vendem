@@ -161,10 +161,26 @@ function f(num) {
   return Number(num).toFixed(2).replace(".", ",");
 }
 
+function extrairNumeroReal(msg) {
+  // Caso ideal
+  if (msg.from?.endsWith("@c.us")) {
+    return msg.from;
+  }
+
+  // Tentativa (não garantida)
+  const formatted = msg.sender?.formattedName;
+  if (formatted) {
+    const digits = formatted.replace(/\D/g, "");
+    return digits;
+  }
+
+  return null;
+}
+
 // FUNÇÃO PRINCIPAL DO BOT
 export function configurarBot(client) {
   client.onMessage(async (msg) => {
-    const numero = msg.from;
+    const numero = extrairNumeroReal(msg);
     console.log("xxxxxxxx ", msg);
     const textoRaw = msg.body ? msg.body.trim() : "";
     const texto = textoRaw.toLowerCase();
