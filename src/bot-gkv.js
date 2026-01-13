@@ -3,31 +3,51 @@ import axios from "axios";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import { initializeApp } from "firebase/app";
-import { getFirestore, onSnapshot, collection } from "firebase/firestore";
+import admin from "firebase-admin";
+
+import fs from "fs";
+
+const serviceAccountPath = path.resolve(
+  "/opt/bot-grupo-wpp/serviceAccountKey.json"
+);
+
+const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAAB5SWZoMs8GCuzHbVzrJDponHVrSPCZs",
-  authDomain: "bot-grupos-que-vendem.firebaseapp.com",
-  projectId: "bot-grupos-que-vendem",
-  storageBucket: "bot-grupos-que-vendem.firebasestorage.app",
-  messagingSenderId: "211899664774",
-  appId: "1:211899664774:web:3938fce068af86f8458407",
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAAB5SWZoMs8GCuzHbVzrJDponHVrSPCZs",
+//   authDomain: "bot-grupos-que-vendem.firebaseapp.com",
+//   projectId: "bot-grupos-que-vendem",
+//   storageBucket: "bot-grupos-que-vendem.firebasestorage.app",
+//   messagingSenderId: "211899664774",
+//   appId: "1:211899664774:web:3938fce068af86f8458407",
+// };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
+const db = admin.firestore();
 
 let CLIENTES = [];
 
+// onSnapshot(collection(db, "clientes"), (snap) => {
+//   CLIENTES = snap.docs.map((doc) => doc.data());
+//   console.log("🔥 Clientes atualizados!");
+// });
+
 // escuta alterações no Firestore
-onSnapshot(collection(db, "clientes"), (snap) => {
-  CLIENTES = snap.docs.map((doc) => doc.data());
-  console.log("🔥 Clientes atualizados!");
-});
+db.collection("clientes").onSnapshot(
+  (snap) => {
+    CLIENTES = snap.docs.map((doc) => doc.data());
+    console.log("🔥 Clientes atualizados!");
+  },
+  (error) => {
+    console.error("❌ Firestore listener error:", error);
+  }
+);
 
 function numeroValido(valor) {
   return !isNaN(valor) && isFinite(valor);
