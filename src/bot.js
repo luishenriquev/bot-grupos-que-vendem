@@ -3,9 +3,18 @@ import wppconnect from "@wppconnect-team/wppconnect";
 export async function iniciarBot() {
   const client = await wppconnect.create({
     session: "bot-grupos",
+
     puppeteerOptions: {
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: "new", // importante
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu",
+        "--no-first-run",
+        "--no-zygote",
+        "--single-process",
+      ],
     },
 
     autoClose: 0, // nunca fecha automaticamente
@@ -16,6 +25,6 @@ export async function iniciarBot() {
     },
   });
 
-  console.log("Bot iniciado!");
+  console.log("✅ Bot iniciado com sucesso!");
   return client;
 }
